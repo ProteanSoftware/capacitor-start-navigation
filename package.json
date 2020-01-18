@@ -43,9 +43,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Protean-Software-Ltd/capacitor-start-navigation"
+    "url": "https://github.com/ProteanSoftware/capacitor-start-navigation"
   },
   "bugs": {
-    "url": "https://github.com/Protean-Software-Ltd/capacitor-start-navigation/issues"
+    "url": "https://github.com/ProteanSoftware/capacitor-start-navigation/issues"
   }
 }
