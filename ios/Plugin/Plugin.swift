@@ -1,6 +1,7 @@
 import Foundation
 import Capacitor
 import CoreLocation
+import MapKit
 
 /**
  * Please read the Capacitor iOS Plugin Development Guide
@@ -10,15 +11,18 @@ import CoreLocation
 public class StartNavigationPlugin: CAPPlugin {
     
     @objc func launchMapsApp(_ call: CAPPluginCall) {
-        let latitude: CLLocationDegrees = call.getDouble("latitude");
-        let longitude: CLLocationDegrees = call.getDouble("longitude");
-        let coordinates = CLLocationCoordinate2DMake(latitude, longitude);
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil);
-        let mapitem = MKMapItem(placemark: placemark);
-        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving];
 
-        mapitem.name = call.getString("name") ?? "Destination";
-        mapitem.openInMaps(launchOptions: options);
-        call.success()
+        if let latitude = call.getDouble("latitude"), let longitude = call.getDouble("longitude") {
+          let coordinates = CLLocationCoordinate2DMake(latitude, longitude);
+          let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil);
+          let mapitem = MKMapItem(placemark: placemark);
+          let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving];
+
+          mapitem.name = call.getString("name") ?? "Destination";
+          mapitem.openInMaps(launchOptions: options);
+          call.success();
+        } else {
+          call.reject("latitude and/or longitude are null");
+        }
     }
 }
