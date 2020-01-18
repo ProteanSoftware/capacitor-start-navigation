@@ -5,5 +5,14 @@ declare module "@capacitor/core" {
 }
 
 export interface StartNavigationPluginPlugin {
-  launchMapsApp(options: { value: string }): Promise<{value: string}>;
+  /**
+   * Opens the native maps applications with directions started
+   * @param options 
+   * @returns Promise 
+   */
+  launchMapsApp(options: { 
+    latitude: string,
+    longitude: number,
+    name?: string
+  }): Promise<void>;
 }

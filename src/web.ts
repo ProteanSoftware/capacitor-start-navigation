@@ -9,9 +9,12 @@ export class StartNavigationPluginWeb extends WebPlugin implements StartNavigati
     });
   }
 
-  async launchMapsApp(options: { value: string }): Promise<{value: string}> {
+  async launchMapsApp(options: {
+    latitude: string,
+    longitude: number,
+    name?: string
+  }): Promise<void> {
     console.log('launchMapsApp', options);
-    return options;
   }
 }
 

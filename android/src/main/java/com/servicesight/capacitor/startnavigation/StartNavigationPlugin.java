@@ -14,18 +14,14 @@ public class StartNavigationPlugin extends Plugin {
 
     @PluginMethod()
     public void launchMapsApp(PluginCall call) {
-        String value = call.getString("value");
-
-        Double latitude = 52.2823;
-        Double longitude = 1.5849;
+        Double latitude = call.getDouble("latitude");
+        Double longitude = call.getDouble("longitude");
 
         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         getContext().startActivity(mapIntent);
 
-        JSObject ret = new JSObject();
-        ret.put("value", value);
-        call.success(ret);
+        call.success();
     }
 }
