@@ -14,7 +14,7 @@ export class StartNavigationPluginWeb extends WebPlugin implements StartNavigati
     longitude: number,
     name?: string
   }): Promise<void> {
-    console.log('launchMapsApp', options);
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${options.latitude},${options.longitude}&travelmode=driving`, "_blank");
   }
 }
 
