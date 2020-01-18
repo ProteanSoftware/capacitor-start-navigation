@@ -1,6 +1,6 @@
 {
   "name": "@proteansoftware/capacitor-start-navigation",
-  "version": "0.0.1-alpha.11",
+  "version": "0.0.1-alpha.12",
   "description": "Starts navigation in the native maps application",
   "main": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -26,7 +26,7 @@
     "dist/",
     "ios/",
     "android/",
-    "CapacitorStartNavigation.podspec"
+    "ProteansoftwareCapacitorStartNavigation.podspec"
   ],
   "keywords": [
     "capacitor",
