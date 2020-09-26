@@ -1,6 +1,6 @@
 {
   "name": "@proteansoftware/capacitor-start-navigation",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Starts navigation in the native maps application",
   "main": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -13,14 +13,14 @@
   "author": "Ashley Medway",
   "license": "MIT",
   "dependencies": {
-    "@capacitor/core": "latest"
+    "@capacitor/android": "^2.4.2",
+    "@capacitor/core": "^2.4.2",
+    "@capacitor/ios": "^2.4.2"
   },
   "devDependencies": {
-    "@capacitor/android": "latest",
-    "@capacitor/ios": "latest",
-    "mkdirp": "^0.5.1",
-    "rimraf": "^3.0.0",
-    "typescript": "^3.2.4"
+    "mkdirp": "^0.5.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.7"
   },
   "files": [
     "dist/",
