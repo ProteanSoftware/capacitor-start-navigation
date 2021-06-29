@@ -13,21 +13,11 @@ Capacitor plugin that allows your app to start native navigation
 ## Usage
 
 ```ts
-import { Plugins } from "@capacitor/core";
-const { StartNavigationPlugin } = Plugins;
-
-//
-// with type support
-import { StartNavigationPlugin } from "@proteansoftware/capacitor-start-navigation";
-const startNavigation = new StartNavigationPlugin();
-
-//
-// alternatively - without types
-const { StartNavigationPlugin } = Plugins;
+import { StartNavigation } from "@proteansoftware/capacitor-start-navigation";
 
 //
 // launches native maps with directions to Warwick, UK
-StartNavigationPlugin.launchMapsApp({
+StartNavigation.launchMapsApp({
   latitude: 52.28333,
   longitude: -1.58333,
   name: "Example location"
