@@ -1,4 +1,4 @@
-declare module "@capacitor/core" {
+declare global {
   interface PluginRegistry {
     StartNavigationPlugin: StartNavigationPluginPlugin;
   }
@@ -11,8 +11,8 @@ export interface StartNavigationPluginPlugin {
    * @returns Promise 
    */
   launchMapsApp(options: { 
-    latitude: string,
-    longitude: number,
+    latitude: string | number,
+    longitude: string | number,
     name?: string
   }): Promise<void>;
 }

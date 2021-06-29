@@ -1,6 +1,6 @@
 {
   "name": "@proteansoftware/capacitor-start-navigation",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Starts navigation in the native maps application",
   "main": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -8,14 +8,16 @@
     "build": "npm run clean && tsc",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "removePacked": "rimraf capacitor-start-navigation-*.tgz",
+    "publishLocally": "npm run removePacked && npm run build && npm pack"
   },
   "author": "Ashley Medway",
   "license": "MIT",
   "dependencies": {
-    "@capacitor/android": "^2.4.2",
-    "@capacitor/core": "^2.4.2",
-    "@capacitor/ios": "^2.4.2"
+    "@capacitor/android": "^3.0.0",
+    "@capacitor/core": "^3.0.0",
+    "@capacitor/ios": "^3.0.0"
   },
   "devDependencies": {
     "mkdirp": "^0.5.5",

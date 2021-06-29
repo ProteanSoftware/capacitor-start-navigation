@@ -9,7 +9,7 @@ import com.getcapacitor.PluginMethod;
 import android.content.Intent;
 import android.net.Uri;
 
-@NativePlugin()
+@CapacitorPlugin()
 public class StartNavigationPlugin extends Plugin {
 
     @PluginMethod()
