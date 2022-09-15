@@ -1,6 +1,6 @@
 {
   "name": "@proteansoftware/capacitor-start-navigation",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Starts navigation in the native maps application",
   "main": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
