@@ -1,3 +1,10 @@
+export interface StartNavigationAddress {
+  street: string | null;
+  city: string | null;
+  state: string | null;
+  postalCode: string | null;
+  country: string | null;
+}
 export interface StartNavigationOptions {
   /**
    * Geo-coordinate latitude.
@@ -10,10 +17,10 @@ export interface StartNavigationOptions {
    */
   longitude?: string | number | null;
   /**
-   * Search for an address.
-   * Can be used in combination with <c>latitude</c> and <c>longitude</c> to refine search results.
+   * Search for an address. (iOS and Android)
+   * Can be used in combination with <c>latitude</c> and <c>longitude</c> to refine search results (Android only).
    */
-  address?: string | null;
+  address?: StartNavigationAddress | null;
   /**
    * Name label to be shown for end Location
    */

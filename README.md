@@ -35,12 +35,23 @@ Opens the native maps applications with directions started
 
 #### StartNavigationOptions
 
-| Prop            | Type                                  | Description                                                                                                                                   |
-| --------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`latitude`**  | <code>string \| number \| null</code> | Geo-coordinate latitude. Can be null for address only search.                                                                                 |
-| **`longitude`** | <code>string \| number \| null</code> | Geo-coordinate longitude. Can be null for address only search.                                                                                |
-| **`address`**   | <code>string \| null</code>           | Search for an address. Can be used in combination with &lt;c&gt;latitude&lt;/c&gt; and &lt;c&gt;longitude&lt;/c&gt; to refine search results. |
-| **`name`**      | <code>string \| null</code>           | Name label to be shown for end Location                                                                                                       |
+| Prop            | Type                                                                              | Description                                                                                                                                                                    |
+| --------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`latitude`**  | <code>string \| number \| null</code>                                             | Geo-coordinate latitude. Can be null for address only search.                                                                                                                  |
+| **`longitude`** | <code>string \| number \| null</code>                                             | Geo-coordinate longitude. Can be null for address only search.                                                                                                                 |
+| **`address`**   | <code><a href="#startnavigationaddress">StartNavigationAddress</a> \| null</code> | Search for an address. (iOS and Android) Can be used in combination with &lt;c&gt;latitude&lt;/c&gt; and &lt;c&gt;longitude&lt;/c&gt; to refine search results (Android only). |
+| **`name`**      | <code>string \| null</code>                                                       | Name label to be shown for end Location                                                                                                                                        |
+
+
+#### StartNavigationAddress
+
+| Prop             | Type                        |
+| ---------------- | --------------------------- |
+| **`street`**     | <code>string \| null</code> |
+| **`city`**       | <code>string \| null</code> |
+| **`state`**      | <code>string \| null</code> |
+| **`postalCode`** | <code>string \| null</code> |
+| **`country`**    | <code>string \| null</code> |
 
 </docgen-api>
 ## Usage

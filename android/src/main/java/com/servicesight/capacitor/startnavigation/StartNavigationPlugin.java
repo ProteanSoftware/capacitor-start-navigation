@@ -15,7 +15,7 @@ public class StartNavigationPlugin extends Plugin {
     public void launchMapsApp(PluginCall call) {
         Double latitude = call.getDouble("latitude", 0d);
         Double longitude = call.getDouble("longitude", 0d);
-        String address = call.getString("address", null);
+        JSObject address = call.getObject("address", null);
 
         if (latitude == 0d && longitude == 0d && address == null) {
             call.reject("Must supply either: latitude & longitude or an address to search");
@@ -24,7 +24,36 @@ public class StartNavigationPlugin extends Plugin {
         String query = "google.navigation:q=" + latitude + "," + longitude;
 
         if (address != null) {
-            query += "?q=" + address.replace(' ', '+');
+            String addressQuery = "";
+            String street = address.getString("street", null);
+            String city = address.getString("city", null);
+            String state = address.getString("state", null);
+            String postalCode = address.getString("postalCode", null);
+            String country = address.getString("country", null);
+
+            if (street != null) {
+                addressQuery += street + "+";
+            }
+
+            if (city != null) {
+                addressQuery += city + "+";
+            }
+
+            if (state != null) {
+                addressQuery += state + "+";
+            }
+
+            if (postalCode != null) {
+                addressQuery += postalCode + "+";
+            }
+
+            if (country != null) {
+                addressQuery += country + "+";
+            }
+
+            if (addressQuery.length() > 0) {
+                query += "?q=" + addressQuery.substring(0, addressQuery.length() - 1);
+            }
         }
 
         Uri gmmIntentUri = Uri.parse(query);
