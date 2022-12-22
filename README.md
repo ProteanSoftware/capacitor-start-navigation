@@ -67,6 +67,18 @@ StartNavigation.launchMapsApp({
   name: "Example location"
 });
 
+//
+// launches native maps with directions to Warwick, UK
+StartNavigation.launchMapsApp({
+  address: {
+    street: "Market Place",
+    city: "Warwick",
+    postalCode: "CV34 4SA",
+    Country: "United Kingdom"
+  },
+  name: "Example location"
+});
+
 ```
 
 ## iOS setup
