@@ -1,3 +1,10 @@
+/**
+ * Waze (ios, android, web)
+ * Google Maps (ios, android, web)
+ * Apple Maps (ios)
+ */
+export type StartNavigationMapApp = "waze" | "googlemaps" | "applemaps";
+
 export interface StartNavigationAddress {
   street: string | null;
   city: string | null;
@@ -5,6 +12,7 @@ export interface StartNavigationAddress {
   postalCode: string | null;
   country: string | null;
 }
+
 export interface StartNavigationOptions {
   /**
    * Geo-coordinate latitude.
@@ -25,6 +33,10 @@ export interface StartNavigationOptions {
    * Name label to be shown for end Location
    */
   name?: string | null;
+  /**
+   * The app id of the maps app to use. If not specified, the default maps app will be used.
+   */
+  appId?: StartNavigationMapApp | null;
 }
 
 export interface StartNavigationPlugin {

@@ -9,6 +9,7 @@ Capacitor plugin that allows your app to start native navigation
 
 * [`launchMapsApp(...)`](#launchmapsapp)
 * [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -41,6 +42,7 @@ Opens the native maps applications with directions started
 | **`longitude`** | <code>string \| number \| null</code>                                             | Geo-coordinate longitude. Can be null for address only search.                                                                                                                 |
 | **`address`**   | <code><a href="#startnavigationaddress">StartNavigationAddress</a> \| null</code> | Search for an address. (iOS and Android) Can be used in combination with &lt;c&gt;latitude&lt;/c&gt; and &lt;c&gt;longitude&lt;/c&gt; to refine search results (Android only). |
 | **`name`**      | <code>string \| null</code>                                                       | Name label to be shown for end Location                                                                                                                                        |
+| **`appId`**     | <code><a href="#startnavigationmapapp">StartNavigationMapApp</a> \| null</code>   | The app id of the maps app to use. If not specified, the default maps app will be used.                                                                                        |
 
 
 #### StartNavigationAddress
@@ -52,6 +54,18 @@ Opens the native maps applications with directions started
 | **`state`**      | <code>string \| null</code> |
 | **`postalCode`** | <code>string \| null</code> |
 | **`country`**    | <code>string \| null</code> |
+
+
+### Type Aliases
+
+
+#### StartNavigationMapApp
+
+Waze (ios, android, web)
+Google Maps (ios, android, web)
+Apple Maps (ios)
+
+<code>"waze" | "googlemaps" | "applemaps"</code>
 
 </docgen-api>
 ## Usage
