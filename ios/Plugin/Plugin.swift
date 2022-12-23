@@ -11,8 +11,13 @@ import MapKit
 @objc(StartNavigationPlugin)
 public class StartNavigationPlugin: CAPPlugin {
     @objc func launchMapsApp(_ call: CAPPluginCall) {
+        let appId = call.getString("appId", "applemaps")
+        let latitude = call.getDouble("latitude", 0)
+        let longitude = call.getDouble("longitude", 0)
+        let address = CNMutablePostalAddress()
+        var hasAddress = false
         if let jsAddress = call.getObject("address") {
-            let address = CNMutablePostalAddress()
+            hasAddress = true
             if let street = jsAddress["street"] as? String {
                 address.street = street
             }
@@ -28,33 +33,54 @@ public class StartNavigationPlugin: CAPPlugin {
             if let country = jsAddress["country"] as? String {
                 address.country = country
             }
-            let geocoder = CLGeocoder()
-            geocoder.geocodePostalAddress(address) { (placemarks, error) in
-                if let error = error {
-                    call.reject(error.localizedDescription)
-                } else if let placemarks = placemarks {
-                    let mkPlacemark = MKPlacemark(placemark: placemarks[0])
-                    let mapitem = MKMapItem(placemark: mkPlacemark)
-                    let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        }
 
-                    mapitem.name = call.getString("name") ?? "Destination"
-                    mapitem.openInMaps(launchOptions: options)
-                    call.resolve()
-                } else {
-                    call.reject("Unknown error occured")
+        if appId == "applemap" {
+            if hasAddress {
+                let geocoder = CLGeocoder()
+                geocoder.geocodePostalAddress(address) { (placemarks, error) in
+                    if let error = error {
+                        call.reject(error.localizedDescription)
+                    } else if let placemarks = placemarks {
+                        let mkPlacemark = MKPlacemark(placemark: placemarks[0])
+                        let mapitem = MKMapItem(placemark: mkPlacemark)
+                        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+
+                        mapitem.name = call.getString("name") ?? "Destination"
+                        mapitem.openInMaps(launchOptions: options)
+                        call.resolve()
+                    } else {
+                        call.reject("Unknown error occured")
+                    }
                 }
-            }
-        } else if let latitude = call.getDouble("latitude"), let longitude = call.getDouble("longitude") {
-            let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-            let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-            let mapitem = MKMapItem(placemark: placemark)
-            let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+            } else {
+                let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+                let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                let mapitem = MKMapItem(placemark: placemark)
+                let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
 
-            mapitem.name = call.getString("name") ?? "Destination"
-            mapitem.openInMaps(launchOptions: options)
-            call.resolve()
+                mapitem.name = call.getString("name") ?? "Destination"
+                mapitem.openInMaps(launchOptions: options)
+                call.resolve()
+            }
+        } else if appId == "waze" {
+            var wazeUrl = URL(string: "waze://")!
+            if UIApplication.shared.canOpenURL(wazeUrl) {
+                let bundleId = Bundle.main.bundleIdentifier
+                var queryUrl = "https://waze.com/ul?"
+                if hasAddress {
+                    queryUrl += "q=\(address.street)%20\(address.city)%20\(address.state)%20\(address.postalCode)%20\(address.country)"
+                } else {
+                    queryUrl += "ll=\(latitude),\(longitude)"
+                }
+                wazeUrl = URL(string: "\(queryUrl)&navigate=yes&utm_source=\(bundleId)")!
+                UIApplication.shared.open(wazeUrl, options: [:], completionHandler: nil)
+                call.resolve()
+            } else {
+                call.reject("Waze not installed")
+            }
         } else {
-            call.reject("latitude and/or longitude are null")
+            call.reject("app id \"" + appId + "\" is not supported")
         }
     }
 }
