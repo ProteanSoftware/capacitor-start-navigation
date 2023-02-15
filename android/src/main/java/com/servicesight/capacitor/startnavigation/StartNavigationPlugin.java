@@ -16,12 +16,21 @@ public class StartNavigationPlugin extends Plugin {
     public void launchMapsApp(PluginCall call) {
         Double latitude = call.getDouble("latitude");
         Double longitude = call.getDouble("longitude");
+        String mode = call.getString("travelMode", "driving");
 
-        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude);
+        if (mode == "walking") {
+            mode = "w";
+        } else if (mode == "bicycling") {
+            mode = "b";
+        } else {
+            mode = "d";
+        }
+
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude + "mode=" + mode);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         getContext().startActivity(mapIntent);
 
-        call.success();
+        call.resolve();
     }
 }

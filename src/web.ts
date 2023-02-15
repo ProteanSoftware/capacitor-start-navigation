@@ -1,5 +1,5 @@
 import { WebPlugin, registerPlugin } from '@capacitor/core';
-import { StartNavigationPluginPlugin } from './definitions';
+import { StartNavigationPluginPlugin, TravelMode } from './definitions';
 
 export class StartNavigationPluginWeb extends WebPlugin implements StartNavigationPluginPlugin {
   constructor() {
@@ -12,9 +12,11 @@ export class StartNavigationPluginWeb extends WebPlugin implements StartNavigati
   async launchMapsApp(options: {
     latitude: string | number,
     longitude: string | number,
-    name?: string
+    name?: string,
+    travelMode?: TravelMode
   }): Promise<void> {
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${options.latitude},${options.longitude}&travelmode=driving`, "_blank");
+    const travelMode = options.travelMode || 'driving';
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${options.latitude},${options.longitude}&travelmode=${travelMode}`, "_blank");
   }
 }
 
