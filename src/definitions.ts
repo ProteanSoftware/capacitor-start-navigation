@@ -16,6 +16,12 @@ export interface StartNavigationPluginPlugin {
     latitude: string | number,
     longitude: string | number,
     name?: string,
+    /**
+     * Defaults to 'driving'
+     * All options are available on web
+     * On iOS only 'driving', 'walking' & 'transit' are available
+     * On Android only 'driving', 'walking', 'bicycling' are available
+     */
     travelMode?: TravelMode
   }): Promise<void>;
 }
