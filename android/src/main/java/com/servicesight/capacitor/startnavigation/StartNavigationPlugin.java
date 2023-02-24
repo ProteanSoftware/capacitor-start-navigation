@@ -17,14 +17,7 @@ public class StartNavigationPlugin extends Plugin {
         Double latitude = call.getDouble("latitude");
         Double longitude = call.getDouble("longitude");
         String mode = call.getString("travelMode", "driving");
-
-        if (mode == "walking") {
-            mode = "w";
-        } else if (mode == "bicycling") {
-            mode = "b";
-        } else {
-            mode = "d";
-        }
+        mode = GetMode(mode);
 
         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude + "&mode=" + mode);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -32,5 +25,16 @@ public class StartNavigationPlugin extends Plugin {
         getContext().startActivity(mapIntent);
 
         call.resolve();
+    }
+
+    public String GetMode(String input) {
+        String mode = "d";
+        if (mode.equals("walking")) {
+            mode = "w";
+        } else if (mode.equals("bicycling")) {
+            mode = "b";
+        }
+
+        return mode;
     }
 }
