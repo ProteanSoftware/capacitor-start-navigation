@@ -1,6 +1,5 @@
 package com.servicesight.capacitor.startnavigation;
 
-import com.getcapacitor.JSObject;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -29,9 +28,9 @@ public class StartNavigationPlugin extends Plugin {
 
     public String GetMode(String input) {
         String mode = "d";
-        if (mode.equals("walking")) {
+        if (input.equals("walking")) {
             mode = "w";
-        } else if (mode.equals("bicycling")) {
+        } else if (input.equals("bicycling")) {
             mode = "b";
         }
 
