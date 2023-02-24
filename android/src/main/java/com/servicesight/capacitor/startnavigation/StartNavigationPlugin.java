@@ -26,7 +26,7 @@ public class StartNavigationPlugin extends Plugin {
             mode = "d";
         }
 
-        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude + "mode=" + mode);
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude + "&mode=" + mode);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         getContext().startActivity(mapIntent);
