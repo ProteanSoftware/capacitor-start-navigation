@@ -25,7 +25,17 @@ export interface StartNavigationOptions {
    * Name label to be shown for end Location
    */
   name?: string | null;
+
+  /**
+   * Defaults to 'driving'
+   * All options are available on web
+   * On iOS only 'driving', 'walking' & 'transit' are available
+   * On Android only 'driving', 'walking', 'bicycling' are available
+   */
+  travelMode?: TravelMode
 }
+
+export type TravelMode = 'driving' | 'walking' | 'transit' | 'bicycling';
 
 export interface StartNavigationPlugin {
   /**

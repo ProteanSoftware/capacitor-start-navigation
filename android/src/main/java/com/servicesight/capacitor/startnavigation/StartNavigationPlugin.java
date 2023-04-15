@@ -15,6 +15,8 @@ public class StartNavigationPlugin extends Plugin {
     public void launchMapsApp(PluginCall call) {
         Double latitude = call.getDouble("latitude", 0d);
         Double longitude = call.getDouble("longitude", 0d);
+        String mode = call.getString("travelMode", "driving");
+        mode = GetMode(mode);
         JSObject address = call.getObject("address", null);
 
         if (latitude == 0d && longitude == 0d && address == null) {
@@ -56,11 +58,24 @@ public class StartNavigationPlugin extends Plugin {
             }
         }
 
+        query += "&mode=" + mode;
+
         Uri gmmIntentUri = Uri.parse(query);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         getContext().startActivity(mapIntent);
 
         call.resolve();
+    }
+
+    public String GetMode(String input) {
+        String mode = "d";
+        if (input.equals("walking")) {
+            mode = "w";
+        } else if (input.equals("bicycling")) {
+            mode = "b";
+        }
+
+        return mode;
     }
 }

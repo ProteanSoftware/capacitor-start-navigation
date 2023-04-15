@@ -64,7 +64,8 @@ import { StartNavigation } from "@proteansoftware/capacitor-start-navigation";
 StartNavigation.launchMapsApp({
   latitude: 52.28333,
   longitude: -1.58333,
-  name: "Example location"
+  name: "Example location",
+  travelMode: "walking"
 });
 
 //
@@ -80,6 +81,13 @@ StartNavigation.launchMapsApp({
 });
 
 ```
+
+### TravelMode
+
+Defaults to 'driving'.  
+All options are available on web.  
+On iOS only 'driving', 'walking' & 'transit' are available.  
+On Android only 'driving', 'walking', 'bicycling' are available.
 
 ## iOS setup
 

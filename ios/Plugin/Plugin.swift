@@ -11,6 +11,17 @@ import MapKit
 @objc(StartNavigationPlugin)
 public class StartNavigationPlugin: CAPPlugin {
     @objc func launchMapsApp(_ call: CAPPluginCall) {
+        let mode = call.getString("travelMode", "driving");
+        var options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving];
+              
+        if mode == "walking" {
+          options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking];
+        }
+          
+        if mode == "transit" {
+          options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeTransit];
+        }
+
         if let jsAddress = call.getObject("address") {
             let address = CNMutablePostalAddress()
             if let street = jsAddress["street"] as? String {
@@ -35,7 +46,6 @@ public class StartNavigationPlugin: CAPPlugin {
                 } else if let placemarks = placemarks {
                     let mkPlacemark = MKPlacemark(placemark: placemarks[0])
                     let mapitem = MKMapItem(placemark: mkPlacemark)
-                    let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
 
                     mapitem.name = call.getString("name") ?? "Destination"
                     mapitem.openInMaps(launchOptions: options)
@@ -48,7 +58,6 @@ public class StartNavigationPlugin: CAPPlugin {
             let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
             let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
             let mapitem = MKMapItem(placemark: placemark)
-            let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
 
             mapitem.name = call.getString("name") ?? "Destination"
             mapitem.openInMaps(launchOptions: options)

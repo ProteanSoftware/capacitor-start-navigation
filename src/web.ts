@@ -11,8 +11,9 @@ export class StartNavigationPluginWeb extends WebPlugin implements StartNavigati
   }
 
   async launchMapsApp(options: StartNavigationOptions): Promise<void> {
+    const travelMode = options.travelMode || 'driving';
     window.open(
-      `https://www.google.com/maps/dir/?api=1&destination=${options.latitude},${options.longitude}&travelmode=driving`,
+      `https://www.google.com/maps/dir/?api=1&destination=${options.latitude},${options.longitude}&travelmode=${travelMode}`,
       "_blank"
     );
   }
