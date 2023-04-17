@@ -54,7 +54,7 @@ public class StartNavigationPlugin extends Plugin {
             }
 
             if (addressQuery.length() > 0) {
-                query += "?q=" + addressQuery.substring(0, addressQuery.length() - 1);
+                query = "google.navigation:q=" + addressQuery.substring(0, addressQuery.length() - 1);
             }
         }
 
