@@ -54,7 +54,12 @@ public class StartNavigationPlugin extends Plugin {
             }
 
             if (addressQuery.length() > 0) {
-                query += "?q=" + addressQuery.substring(0, addressQuery.length() - 1);
+                if (latitude == 0d && longitude == 0d) {
+                    query = "google.navigation:q=";
+                } else {
+                    query += "&q=";
+                }
+                query +=  addressQuery.substring(0, addressQuery.length() - 1);
             }
         }
 
