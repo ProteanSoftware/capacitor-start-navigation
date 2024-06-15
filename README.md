@@ -1,5 +1,8 @@
 # capacitor-start-navigation [![npm version](https://badge.fury.io/js/%40proteansoftware%2Fcapacitor-start-navigation.svg)](https://badge.fury.io/js/%40proteansoftware%2Fcapacitor-start-navigation)
 
+# Archived and moved to: https://github.com/AshleyMedway/capacitor-start-navigation
+
+
 Capacitor plugin that allows your app to start native navigation
 
 
